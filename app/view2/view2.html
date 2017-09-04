@@ -1,0 +1,20 @@
+<div class="centric jumbotron">
+  <h1>&#9775 Itunes Song Finder &#9775</h1>  
+  <div class="custom-center">
+  <div class="form-group col-md-4">  
+  <input type="text" class="form-control" name="searchTerm" ng-model="searchTerm" placeholder="Enter the search term"><br>  
+  <button type="button" class="btn btn-primary" ng-click="searchSongs(searchTerm)">Search</button><br>
+  <span class="error" ng-if="error">{{errorText}}</span>
+  <hr> 
+  </div>
+  </div>
+</div>
+<div class="card col-lg-4 col-md-4 col-sm-6 col-xs-12 border-box-1" ng-repeat="song in songList | limitTo:6">
+  <img class="card-img-top" src="{{song.artworkUrl100}}" alt="{{song.trackName}}">
+  <div class="card-block">
+    <div class="card-title ellipsis-active">{{song.trackName}}</div>
+    <h5 class="card-title">{{song.artistName}}</h5>
+    <p class="card-text">Track Price {{ song.trackPrice | currency}}</p>
+  </div>
+</div>
+
