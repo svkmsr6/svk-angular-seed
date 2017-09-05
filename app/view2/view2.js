@@ -26,7 +26,7 @@ angular.module('myApp.view2', ['ngRoute'])
         }).success(function(data){
           defer.resolve(data);
         }).error(function(){
-          defer.reject('An error occurred!');
+          defer.reject('An error occurred! Please check your search term or your network');
         });
         return defer.promise;
     }
@@ -37,8 +37,9 @@ angular.module('myApp.view2', ['ngRoute'])
       $scope.error = false;
       $scope.errorText = '';
       $scope.searchSongs = function(name){
-        if(!name || name.length==0){
-             $scope.errorText = 'Please enter a search term';
+        var specialCharacterPattern = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+        if(!name || name.length==0 || specialCharacterPattern.test(name) ){
+             $scope.errorText = 'Please enter a proper search term';
              $scope.error = true;
              $scope.songList = [];
         }
