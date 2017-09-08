@@ -42,6 +42,8 @@ angular.module('myApp.view2', ['ngRoute'])
                 '<div class="card-title ellipsis-active">{{song.trackName}}</div>'+
                 '<h5 class="card-title">{{song.artistName}}</h5>'+
                 '<p class="card-text">Track Price {{ song.trackPrice | currency}}</p>'+
+                '<audio src="{{song.previewUrl}}" controls>'+
+                'Your browser does not support the <code>audio</code> element.</audio>'+
                 '</div>',
       link: function (scope, element, attrs) {
         // DOM manipulation/events here!
