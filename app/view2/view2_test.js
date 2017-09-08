@@ -9,8 +9,8 @@ beforeEach(inject(function($injector) {
   // Set up the mock http service responses
   $httpBackend = $injector.get('$httpBackend');
   // backend definition common for all tests
-  $httpBackend.when('GET', 'https://itunes.apple.com/search?term=Justin+Bieber&callback=JSON_CALLBACK')
-                          .respond({  
+  $httpBackend.expect('GET','https://itunes.apple.com/search?term=Justin+Bieber&callback=JSON_CALLBACK')
+                          .respond(200,{  
 "resultCount":2,
 "results":[  
     {  
@@ -109,12 +109,11 @@ describe('view2 controller', function(){
 
   it('search with normal string', function() {
       mockScope.searchSongs('Justin Bieber');
-      expect(mockScope.songList.length).toBe(0);
+      expect(mockScope.songList.length).toBe(2);
       console.log(mockScope.songList);
       expect(mockScope.error).toBe(false);
       expect(mockScope.errorText).toBe('');
       //$httpBackend.flush();
   });
-
 });
 });
