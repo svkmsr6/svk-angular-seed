@@ -9,12 +9,7 @@
   </div>
   </div>
 </div>
-<div class="card col-lg-4 col-md-4 col-sm-6 col-xs-12 border-box-1" ng-repeat="song in songList | limitTo:6">
-  <img class="card-img-top" src="{{song.artworkUrl100}}" alt="{{song.trackName}}">
-  <div class="card-block">
-    <div class="card-title ellipsis-active">{{song.trackName}}</div>
-    <h5 class="card-title">{{song.artistName}}</h5>
-    <p class="card-text">Track Price {{ song.trackPrice | currency}}</p>
-  </div>
+<div class="card col-lg-4 col-md-4 col-sm-6 col-xs-12 border-box-1" ng-repeat="song in songList | limitTo:6" song-tile>
+    <img class="card-img-top" src="{{song.artworkUrl100}}" alt="{{song.trackName}}">  
 </div>
 

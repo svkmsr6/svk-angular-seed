@@ -32,6 +32,23 @@ angular.module('myApp.view2', ['ngRoute'])
     }
 }])
 
+.directive('songTile', function () {
+    return {
+      restrict: 'EA',
+      replace: true,
+      transclude: true,
+      template: '<div class="card-block">'+
+                '<div ng-transclude></div>'+
+                '<div class="card-title ellipsis-active">{{song.trackName}}</div>'+
+                '<h5 class="card-title">{{song.artistName}}</h5>'+
+                '<p class="card-text">Track Price {{ song.trackPrice | currency}}</p>'+
+                '</div>',
+      link: function (scope, element, attrs) {
+        // DOM manipulation/events here!
+      }
+    };
+})
+
 .controller('View2Ctrl', ['$scope','$itunesServiceProvider',function($scope,$itunesServiceProvider) {
       $scope.songList = [];
       $scope.error = false;
