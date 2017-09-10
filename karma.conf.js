@@ -23,10 +23,18 @@ module.exports = function(config) {
       'karma-firefox-launcher',
       'karma-jasmine',
       'karma-junit-reporter',
-      'karma-html-reporter'
+      'karma-html-reporter',
+      'karma-coverage'
     ],
 
-    reporters: ['progress', 'html'],
+    preprocessors: {
+      // source files, that you wanna generate coverage for 
+      // do not include tests or libraries 
+      // (these files will be instrumented by Istanbul) 
+      'view*/**/*.js': ['coverage']
+    },
+
+    reporters: ['progress', 'html','coverage'],
 
     // the default configuration
     htmlReporter: {
@@ -41,6 +49,12 @@ module.exports = function(config) {
       preserveDescribeNesting: false, // folded suites stay folded 
       foldAll: false, // reports start folded (only with preserveDescribeNesting)
     },  
+
+    // optionally, configure the reporter 
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage'
+    }
    
     // junitReporter: {
     //   outputFile: 'test_out/unit.xml',
