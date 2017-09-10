@@ -1,19 +1,51 @@
-'use strict';
+      'use strict';
 
-describe('myApp.view2 module', function() {
-var view2Ctrl,mockScope = {},$httpBackend,promise;
+      describe('myApp.view2 module', function() {
+      var view2Ctrl,mockScope = {},$httpBackend,promise,deferred,rootScope;
 
-beforeEach(module('myApp.view2'));
+      beforeEach(module('myApp.view2'));
 
-beforeEach(inject(function($injector) {
-  // Set up the mock http service responses
-  $httpBackend = $injector.get('$httpBackend');
-  // backend definition common for all tests
-  $httpBackend.expect('GET','https://itunes.apple.com/search?term=Justin+Bieber&callback=JSON_CALLBACK')
-                          .respond(200,{  
-"resultCount":2,
-"results":[  
-    {  
+      beforeEach(inject(function($injector,$itunesServiceProvider,$rootScope) {
+      rootScope = $rootScope;
+      // Set up the mock http service responses
+      $httpBackend = $injector.get('$httpBackend');  
+
+      // The $controller service is used to create instances of controllers
+      var $controller = $injector.get('$controller');
+
+      //spec body
+      view2Ctrl = $controller('View2Ctrl',{ 
+      '$scope' : mockScope,
+      '$itunesServiceProvider':$itunesServiceProvider
+      });
+      }));
+
+      describe('view2 controller', function(){
+
+      it('should be defined', inject(function($controller) {
+      expect(view2Ctrl).toBeDefined();
+      }));
+
+      it('scope should be properly initialized', function() {
+      expect(mockScope.songList.length).toBe(0);
+      expect(mockScope.error).toBe(false);
+      expect(mockScope.errorText).toBe('');
+      });
+
+      it('search with special characters', function() {
+      mockScope.searchSongs('$$^');
+      expect(mockScope.songList.length).toBe(0);
+      expect(mockScope.error).toBe(true);
+      expect(mockScope.errorText).toBe('Please enter a proper search term');
+      });
+
+      it('search with normal string', function() {
+      // backend definition common for all tests
+      $httpBackend.expect('JSONP','https://itunes.apple.com/search?term=Justin+Bieber&callback=JSON_CALLBACK')
+                          .respond({  
+      "resultCount":2,
+      "results":[  
+      {  
       "wrapperType":"track",
       "kind":"song",
       "artistId":320569549,
@@ -45,8 +77,8 @@ beforeEach(inject(function($injector) {
       "currency":"USD",
       "primaryGenreName":"Pop",
       "isStreamable":true
-    },
-    {  
+      },
+      {  
       "wrapperType":"track",
       "kind":"song",
       "artistId":320569549,
@@ -78,42 +110,13 @@ beforeEach(inject(function($injector) {
       "currency":"USD",
       "primaryGenreName":"Pop",
       "isStreamable":true
-    }]}
-);
-  
-  // The $controller service is used to create instances of controllers
-  var $controller = $injector.get('$controller');
-
-  //spec body
-    view2Ctrl = $controller('View2Ctrl',{ '$scope' : mockScope });
-}));
-
-describe('view2 controller', function(){
-
-  it('should be defined', inject(function($controller) {
-    expect(view2Ctrl).toBeDefined();
-  }));
-
-  it('scope should be properly initialized', function() {
-    expect(mockScope.songList.length).toBe(0);
-    expect(mockScope.error).toBe(false);
-    expect(mockScope.errorText).toBe('');
-  });
-
-  it('search with special characters', function() {
-    mockScope.searchSongs('$$^');
-    expect(mockScope.songList.length).toBe(0);
-    expect(mockScope.error).toBe(true);
-    expect(mockScope.errorText).toBe('Please enter a proper search term');
-  });
-
-  it('search with normal string', function() {
+      }]}
+      );
       mockScope.searchSongs('Justin Bieber');
-      expect(mockScope.songList.length).toBe(2);
-      console.log(mockScope.songList);
+      $httpBackend.flush();
+      expect(mockScope.songList.length).toBe(2);      
       expect(mockScope.error).toBe(false);
-      expect(mockScope.errorText).toBe('');
-      //$httpBackend.flush();
-  });
-});
-});
+      expect(mockScope.errorText).toBe('');      
+      });
+      });
+      });
