@@ -41,7 +41,7 @@
 
       it('search with normal string', function() {
       // backend definition common for all tests
-      $httpBackend.expect('JSONP','https://itunes.apple.com/search?term=Justin+Bieber&callback=JSON_CALLBACK')
+      $httpBackend.expect('JSONP','https://itunes.apple.com/search?term=Justin+Bieber&limit=6&callback=JSON_CALLBACK')
                           .respond({  
       "resultCount":2,
       "results":[  

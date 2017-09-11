@@ -11,7 +11,7 @@ angular.module('myApp.view2', ['ngRoute'])
 
 .service('$itunesServiceProvider',['$http','$q',function($http,$q){
     var _baseUrl = 'https://itunes.apple.com/search?term=';
-    var _callbackSuffix = '&callback=JSON_CALLBACK';
+    var _callbackSuffix = '&limit=6&callback=JSON_CALLBACK';
 
     var _generateUrl = function(query){
        return _baseUrl+query.split(' ').join('+')+_callbackSuffix;
