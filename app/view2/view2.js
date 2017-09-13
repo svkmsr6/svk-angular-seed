@@ -56,7 +56,7 @@ angular.module('myApp.view2', ['ngRoute'])
       $scope.error = false;
       $scope.errorText = '';
       $scope.searchSongs = function(name){
-        var specialCharacterPattern = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+        var specialCharacterPattern = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]\W/;
         if(!name || name.length==0 || specialCharacterPattern.test(name) ){
              $scope.errorText = 'Please enter a proper search term';
              $scope.error = true;
@@ -65,9 +65,15 @@ angular.module('myApp.view2', ['ngRoute'])
         else{
         $itunesServiceProvider.searchSongs(name).
           then(function(data){
-              console.log(data.results[0]);
-              $scope.songList = data.results;
-              $scope.error = false;
+              //console.log(data.results[0]);
+              if(data.results.length>0){
+                $scope.songList = data.results;
+                $scope.error = false;
+              }
+              else{
+                $scope.errorText = 'No results available!';
+                $scope.error = true;
+              }             
           },function(data){
               $scope.errorText = data;
               $scope.error = true;
