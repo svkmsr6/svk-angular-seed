@@ -66,14 +66,14 @@ angular.module('myApp.view2', ['ngRoute'])
         $itunesServiceProvider.searchSongs(name).
           then(function(data){
               //console.log(data.results[0]);
-              if(data.results.length>0){
-                $scope.songList = data.results;
+              if(data.results.length>0){               
                 $scope.error = false;
               }
               else{
                 $scope.errorText = 'No results available!';
-                $scope.error = true;
-              }             
+                $scope.error = true;               
+              } 
+              $scope.songList = data.results;            
           },function(data){
               $scope.errorText = data;
               $scope.error = true;
