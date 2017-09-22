@@ -17,7 +17,7 @@
                     <option ng-repeat="loc in locations" value="{{loc}}">{{loc}}</option>                       
                  </select>                
                 <hr>
-                <button type="submit" ng-disabled="custom_form.$invalid && custom_form.$dirty" class="btn btn-primary">Submit</button>
+                <button type="submit" ng-disabled="custom_form.$invalid" class="btn btn-primary">Submit</button>
                 <button type="reset" class="btn btn-warning">Reset</button>
             </form>
         </div>
