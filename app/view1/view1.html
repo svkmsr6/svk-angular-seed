@@ -1,1 +1,25 @@
-<p>This is the partial for view 1.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-6 custom-form">
+            <form name="custom_form" ng-submit="onSubmit()" novalidate>
+                <div class="form-group">
+                    <label for="fname">Full Name</label>
+                    <input type="text" name="fname" class="form-control" ng-model="customForm.fname" ng-required="true">
+                </div>
+                <div class="alert alert-danger" ng-show="custom_form.fname.$invalid && custom_form.fname.$dirty">Full name should have proper values!</div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" class="form-control" ng-model="customForm.email" ng-required="true">
+                </div>
+                <div class="alert alert-danger" ng-show="custom_form.email.$invalid && custom_form.email.$dirty">Email should have proper values!</div>
+                <label for="location">Choose Location</label>
+                 <select name="location" class="select" ng-model="customForm.location">
+                    <option ng-repeat="loc in locations" value="{{loc}}">{{loc}}</option>                       
+                 </select>                
+                <hr>
+                <button type="submit" ng-disabled="custom_form.$invalid && custom_form.$dirty" class="btn btn-primary">Submit</button>
+                <button type="reset" class="btn btn-warning">Reset</button>
+            </form>
+        </div>
+    </div>
+</div>

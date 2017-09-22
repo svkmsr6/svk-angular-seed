@@ -9,6 +9,11 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [function() {
-
+.controller('View1Ctrl', ['$scope',function($scope) {
+  $scope.customForm = {};
+  $scope.locations = ['Bengaluru','Kolkata','Mumbai','New Delhi'];
+  $scope.customForm.location = $scope.locations[0];
+  $scope.onSubmit = function(){
+    console.log($scope.customForm);
+  }
 }]);

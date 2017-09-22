@@ -1,4 +1,10 @@
 /* app css stylesheet */
+.custom-form{
+  border: 3px solid #020080;
+  background-color: #B7B7E7;
+  padding: 10px;
+  margin: 2% 25%;
+}
 
 .menu {
   list-style: none;
