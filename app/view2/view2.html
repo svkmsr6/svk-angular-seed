@@ -2,7 +2,7 @@
   <h1>&#9775 Itunes Song Finder &#9775</h1>  
   <div class="custom-center">
   <div class="form-group col-md-4">  
-  <input type="text" class="form-control" name="searchTerm" ng-model="searchTerm" placeholder="Enter the search term"><br>  
+  <input type="text" class="form-control" name="searchTerm" ng-keyup="onEnter($event)" ng-model="searchTerm" placeholder="Enter the search term"><br>  
   <button type="button" class="btn btn-primary" ng-click="searchSongs(searchTerm)">Search</button><br>
   <span class="error" ng-if="error">{{errorText}}</span>
   <hr> 

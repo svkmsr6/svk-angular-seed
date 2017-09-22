@@ -55,6 +55,10 @@ angular.module('myApp.view2', ['ngRoute'])
       $scope.songList = [];
       $scope.error = false;
       $scope.errorText = '';
+      $scope.onEnter = function(evt){        
+        if(evt.keyCode === 13)
+            $scope.searchSongs($scope.searchTerm);
+      }
       $scope.searchSongs = function(name){
         var specialCharacterPattern = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]\W/;
         if(!name || name.length==0 || specialCharacterPattern.test(name) ){
