@@ -3,6 +3,15 @@
   background-color: lightsteelblue;
 }
 
+.list-group-item{
+  cursor: pointer;
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+  color: #f1eded;
+  background-color: black;
+}
+
 .navbar-default .navbar-nav>li>a { 
   font-size: large;
 }

@@ -22,7 +22,7 @@
                 <select name="location" class="select" ng-model="customForm.location" class="form-control">
                     <option ng-repeat="loc in locations" value="{{loc}}">{{loc}}</option>                       
                  </select>
-                 <hr>
+                <hr>
                 <div class="form-group">
                     <label for="active" class="checkbox-inline">
                         <input type="checkbox" name="active" ng-model="customForm.active">Active
@@ -34,7 +34,10 @@
             </form>
         </div>
         <div class="col-xs-6">
-            <detail-view title = "Despacito"></detail-view>
+            <detail-view title="Despacito" desc=""></detail-view>
+        </div>
+        <div class="col-xs-12">
+            <div ui-view></div>
         </div>
     </div>
 </div>

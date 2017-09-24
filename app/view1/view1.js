@@ -1,12 +1,31 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('myApp.view1', ['ngRoute','ui.router'])
 
-.config(['$routeProvider', function($routeProvider) {
+.config(['$routeProvider','$stateProvider', '$urlRouterProvider', 
+function($routeProvider,$stateProvider, $urlRouterProvider) {
   $routeProvider.when('/view1', {
     templateUrl: 'view1/view1.html',
     controller: 'View1Ctrl'
   });
+
+  $urlRouterProvider.otherwise('/view1');
+
+  $stateProvider.
+  state('subcomponent01',{
+    url:'/subcomponent01',
+    templateUrl:'./view1/detail-view/sub-views/sub-component-01.html'
+  })
+  .state('subcomponent02',{
+    url:'/subcomponent02',
+    templateUrl:'./view1/detail-view/sub-views/sub-component-02.html'
+  })
+  .state('subcomponent03',{
+    url:'/subcomponent03',
+    templateUrl:'./view1/detail-view/sub-views/sub-component-03.html'
+  })
+
+
 }])
 .component('detailView', {
   transclude: true,
@@ -15,11 +34,11 @@ angular.module('myApp.view1', ['ngRoute'])
   // },
   bindings: {
     title:'@',
-    text:'='
+    desc:'='
   },
   controller: function($scope) {
     var vm = this;
-   vm.$onInit = function() {
+    vm.$onInit = function() {
       vm.desc = 'Hispanicity';      
     };
     
