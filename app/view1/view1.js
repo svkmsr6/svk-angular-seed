@@ -24,6 +24,22 @@ function($routeProvider,$stateProvider, $urlRouterProvider) {
     url:'/subcomponent03',
     templateUrl:'./view1/detail-view/sub-views/sub-component-03.html'
   })
+  .state('subcomponent03.nestedComponent01',{
+    url:'/subcomponent03/nestedComponent01',
+    templateUrl:'./view1/detail-view/sub-views/sub-component-03.html',
+    controller: function($scope) {
+      $scope.comp_title = "L'Azzurri";
+      $scope.items = ['Donatelli', 'Durante', 'Calcavecchia'];
+    }
+  })
+  .state('subcomponent03.nestedComponent02',{
+    url:'/subcomponent03/nestedComponent02',
+    templateUrl:'./view1/detail-view/sub-views/sub-component-03.html',
+    controller: function($scope) {
+      $scope.comp_title = "De Yehudenkraft";
+      $scope.items = ['Cohen', 'Bernstein', 'Goldmann'];
+    }
+  })
 
 
 }])
@@ -38,6 +54,7 @@ function($routeProvider,$stateProvider, $urlRouterProvider) {
   },
   controller: function($scope) {
     var vm = this;
+
     vm.$onInit = function() {
       vm.desc = 'Hispanicity';      
     };
@@ -50,6 +67,7 @@ function($routeProvider,$stateProvider, $urlRouterProvider) {
   $scope.locations = ['Bengaluru','Kolkata','Mumbai','New Delhi'];
   $scope.customForm.location = $scope.locations[0];
   $scope.genders = ['Male','Female'];
+  $scope.comp_title = "Sub Component 03";
   $scope.customForm.sex = $scope.genders[0];
   $scope.onSubmit = function(){
     console.log($scope.customForm);
