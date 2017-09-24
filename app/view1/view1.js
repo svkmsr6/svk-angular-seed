@@ -8,7 +8,24 @@ angular.module('myApp.view1', ['ngRoute'])
     controller: 'View1Ctrl'
   });
 }])
-
+.component('detailView', {
+  transclude: true,
+  // require: {
+  //   tabsCtrl: '^myTabs'
+  // },
+  bindings: {
+    title:'@',
+    text:'='
+  },
+  controller: function($scope) {
+    var vm = this;
+   vm.$onInit = function() {
+      vm.desc = 'Hispanicity';      
+    };
+    
+  },
+  templateUrl: './view1/detail-view/detail-view.html'
+})
 .controller('View1Ctrl', ['$scope',function($scope) {
   $scope.customForm = {};
   $scope.locations = ['Bengaluru','Kolkata','Mumbai','New Delhi'];

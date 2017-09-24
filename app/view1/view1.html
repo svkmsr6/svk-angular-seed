@@ -18,10 +18,11 @@
                         <input type="radio" name="sex" ng-model="customForm.sex" value="{{gender}}">{{gender}}                        
                     </label>
                 </div>
-                <label for="location">Choose Location</label>
+                <label for="location">Choose Location</label><br>
                 <select name="location" class="select" ng-model="customForm.location" class="form-control">
                     <option ng-repeat="loc in locations" value="{{loc}}">{{loc}}</option>                       
                  </select>
+                 <hr>
                 <div class="form-group">
                     <label for="active" class="checkbox-inline">
                         <input type="checkbox" name="active" ng-model="customForm.active">Active
@@ -31,6 +32,9 @@
                 <button type="submit" ng-disabled="custom_form.$invalid" class="btn btn-primary">Submit</button>
                 <button type="reset" class="btn btn-warning">Reset</button>
             </form>
+        </div>
+        <div class="col-xs-6">
+            <detail-view title = "Despacito"></detail-view>
         </div>
     </div>
 </div>
