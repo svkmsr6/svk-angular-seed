@@ -1,9 +1,22 @@
 /* app css stylesheet */
+.custom-navcontainer{
+  background-color: lightsteelblue;
+}
+
+.navbar-default .navbar-nav>li>a { 
+  font-size: large;
+}
+
+.navbar-default .navbar-brand {
+  color: #777;
+  font-size: xx-large;
+}
+
 .custom-form{
   border: 3px solid #020080;
   background-color: #B7B7E7;
   padding: 10px;
-  margin: 2% 25%;
+  /* margin: 2% 25%; */
 }
 
 .menu {
