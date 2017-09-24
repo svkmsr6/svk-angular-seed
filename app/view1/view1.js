@@ -9,7 +9,7 @@ function($routeProvider,$stateProvider, $urlRouterProvider) {
     controller: 'View1Ctrl'
   });
 
-  $urlRouterProvider.otherwise('/view1');
+  // $urlRouterProvider.otherwise('/view1');
 
   $stateProvider.
   state('subcomponent01',{
